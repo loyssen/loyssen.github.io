@@ -1,0 +1,3 @@
+□ class User (models/User.ts)
+□ interface User (types/User.ts)
+□ type UserResponse (api/types.ts)

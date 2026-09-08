@@ -1,0 +1,4 @@
+result = calculate(10, 20)
+
+def calculate(a, b):
+    return a + b

@@ -1,0 +1,5 @@
+def hello(name, age):
+    if name:
+        print(f"Hello {name}")
+        return True
+    return False

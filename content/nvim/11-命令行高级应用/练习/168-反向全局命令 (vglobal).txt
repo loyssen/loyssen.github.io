@@ -1,0 +1,5 @@
+// This is important
+const x = 10;
+// Keep this too
+const y = 20;
+delete this line;

@@ -1,0 +1,3 @@
+def hello()  # 缺少冒号
+    print("hello")
+    return True  # 缩进错误

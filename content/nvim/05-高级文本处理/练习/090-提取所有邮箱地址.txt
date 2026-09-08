@@ -1,0 +1,3 @@
+Contact: john@example.com
+Support: support@company.com
+Sales: sales@business.org

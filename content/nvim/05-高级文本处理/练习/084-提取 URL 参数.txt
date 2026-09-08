@@ -1,0 +1,1 @@
+https://example.com?name=John&age=30&city=NYC

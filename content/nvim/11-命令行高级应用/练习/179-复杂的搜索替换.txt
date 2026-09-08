@@ -1,0 +1,1 @@
+:let counter=0 | %s/pattern/\=counter+=1/g

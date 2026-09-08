@@ -1,0 +1,5 @@
+const user1 = { id: 1, name: 'User1' };
+const user2 = { id: 2, name: 'User2' };
+const user3 = { id: 3, name: 'User3' };
+...
+const user10 = { id: 10, name: 'User10' };

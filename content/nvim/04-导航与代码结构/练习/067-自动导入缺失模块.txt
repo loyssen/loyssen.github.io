@@ -1,0 +1,2 @@
+# 使用了未导入的 os 模块
+path = os.path.join("a", "b")

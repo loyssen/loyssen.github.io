@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+version_a = 1
+=======
+version_b = 2
+>>>>>>> branch

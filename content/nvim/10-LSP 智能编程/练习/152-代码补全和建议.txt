@@ -1,0 +1,6 @@
+function calculateTotal(price, quantity, taxRate) {
+  return price * quantity * (1 + taxRate);
+}
+
+// 调用时
+calculateTotal(|)  ← 光标位置

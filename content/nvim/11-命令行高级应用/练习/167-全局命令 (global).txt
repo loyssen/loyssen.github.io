@@ -1,0 +1,5 @@
+console.log("Debug 1");
+const x = 10;
+console.log("Debug 2");
+const y = 20;
+console.log("Debug 3");

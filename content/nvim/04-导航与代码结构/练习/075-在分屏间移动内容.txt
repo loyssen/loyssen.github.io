@@ -1,0 +1,6 @@
+# 左侧文件
+def helper():
+    pass
+
+# 右侧文件
+# 需要 helper 函数

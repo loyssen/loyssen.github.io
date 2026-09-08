@@ -1,0 +1,4 @@
+当前文件: draft.txt
+内容:
+This is my draft content.
+Need to save it with a better name.

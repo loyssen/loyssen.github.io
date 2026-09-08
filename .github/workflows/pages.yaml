@@ -1,0 +1,55 @@
+name: Deploy to GitHub Pages
+# loysan 笔记站: push 到 v5 分支即自动构建发布(2026-09-09)。
+# v5 没有官方 GH Pages workflow(上游 deploy-v5 是 CF Pages 自用), 本文件
+# 参照上游步骤改为 actions/deploy-pages 标准三件套。
+on:
+  push:
+    branches: [v5]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # fetch-depth 0: created-modified-date 插件按 git 历史取日期
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - uses: actions/cache@v5
+        with:
+          path: ~/.npm
+          key: node-${{ hashFiles('package-lock.json') }}
+          restore-keys: node-
+
+      - run: npm install
+
+      # 按 quartz.config.yaml/quartz.lock.json 装插件(上游同款步骤)
+      - run: npx quartz plugin install
+
+      - run: npx quartz build -v
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
