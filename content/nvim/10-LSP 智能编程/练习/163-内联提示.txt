@@ -1,9 +1,0 @@
-// 启用内联提示后
-function greet(name: string, age: number) {
-  console.log(`Hello ${name}, you are ${age}`);
-}
-
-greet("John", 30);
-// 显示为：
-// greet(name: "John", age: 30);
-//        ^^^^        ^^^^  ← 参数名称提示

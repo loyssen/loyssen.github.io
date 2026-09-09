@@ -1,4 +1,0 @@
-DEBUG: detail info
-INFO: normal info
-WARN: warning message
-ERROR: error occurred

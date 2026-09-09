@@ -1,5 +1,0 @@
-function messy(a, b, c) {
-  const x = a + b;
-  const y = x * c;
-  return y;
-}

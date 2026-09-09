@@ -1,2 +1,0 @@
-hello_world_example
-user_name_field

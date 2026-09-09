@@ -1,6 +1,0 @@
-/**
- * 函数描述
- * @param {type} paramName - 参数描述
- * @returns {type} 返回值描述
- */
-function functionName(paramName) {}

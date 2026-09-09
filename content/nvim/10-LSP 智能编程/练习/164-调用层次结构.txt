@@ -1,9 +1,0 @@
-function processData() {
-  validateData();
-  transformData();
-  saveData();
-}
-
-function validateData() {}
-function transformData() {}
-function saveData() {}

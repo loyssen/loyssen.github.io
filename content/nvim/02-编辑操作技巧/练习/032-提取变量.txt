@@ -1,1 +1,0 @@
-const total = price * 0.9 + price * 0.1;

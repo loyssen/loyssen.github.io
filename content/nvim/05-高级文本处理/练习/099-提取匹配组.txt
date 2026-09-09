@@ -1,3 +1,0 @@
-User: John (age: 30)
-User: Jane (age: 25)
-User: Bob (age: 35)

@@ -1,3 +1,0 @@
-ftFT, /?nN, *, #, %
-
-<leader><leader>, <leader>sw, <leader>sg

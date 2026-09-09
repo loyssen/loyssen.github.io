@@ -1,5 +1,0 @@
-JavaScript
-Go
-TypeScript
-Rust
-Python

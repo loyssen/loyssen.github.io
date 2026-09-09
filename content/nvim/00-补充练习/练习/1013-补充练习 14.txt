@@ -1,4 +1,0 @@
-1. Nice to mete you
-2. I'm Navy
-3. this is a good question?
-4. def func(arg1, arg2, arg3):

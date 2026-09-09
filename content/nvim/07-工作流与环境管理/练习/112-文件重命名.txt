@@ -1,2 +1,0 @@
-当前文件: old_name.js
-路径: /project/src/old_name.js

@@ -1,5 +1,0 @@
-[INFO] Application started
-[ERROR] Connection failed
-[INFO] Retry attempt 1
-[ERROR] Timeout occurred
-[INFO] Application stopped

@@ -1,4 +1,0 @@
-const name = "John";
-const age = 30;
-const email = "john@example.com";
-const address = "123 Main St";

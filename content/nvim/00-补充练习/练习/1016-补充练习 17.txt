@@ -1,6 +1,0 @@
-book,door,song,fish
-ship,star,sand,time
-word,tree,bear,moon
-lamp,rain,hair,fire
-book,door,song,fish
-ship,star,sand,time

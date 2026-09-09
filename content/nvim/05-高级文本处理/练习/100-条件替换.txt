@@ -1,3 +1,0 @@
-TODO: implement feature A
-DONE: implement feature B
-TODO: implement feature C

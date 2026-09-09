@@ -1,3 +1,0 @@
-:if search('pattern')
-:  %s/old/new/g
-:endif

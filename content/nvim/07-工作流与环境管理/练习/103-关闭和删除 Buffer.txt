@@ -1,5 +1,0 @@
-当前打开的 buffers:
-1. README.md
-2. main.js (当前，已修改)
-3. test.js (未保存的更改)
-4. temp.txt (临时文件，不需要)

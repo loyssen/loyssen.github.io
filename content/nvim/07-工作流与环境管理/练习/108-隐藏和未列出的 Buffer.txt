@@ -1,7 +1,0 @@
-%  - 当前窗口的 buffer
-#  - 轮换 buffer (Ctrl-^ 切换到的)
-a  - 激活的 buffer (已加载且显示)
-h  - 隐藏的 buffer (已加载但未显示)
-u  - 未列出的 buffer
-+  - 已修改的 buffer
-=  - 只读 buffer

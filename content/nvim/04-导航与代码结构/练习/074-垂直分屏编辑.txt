@@ -1,3 +1,0 @@
-# 文件 1: model.py
-class User:
-    pass

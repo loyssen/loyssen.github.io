@@ -1,3 +1,0 @@
-Price: $99.99
-Quantity: 5 items
-Total: $499.95

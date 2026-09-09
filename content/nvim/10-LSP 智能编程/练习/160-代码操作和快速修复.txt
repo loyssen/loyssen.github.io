@@ -1,3 +1,0 @@
-function calculate() {
-  return (price * 1.2 + 10) * 0.9;
-}

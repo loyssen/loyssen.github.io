@@ -1,5 +1,0 @@
-// 需要在每个 .js buffer 的开头添加：
-/*
- * Copyright 2024
- * Licensed under MIT
- */

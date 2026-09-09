@@ -1,5 +1,0 @@
-// 使用了 useState 但未导入
-function Counter() {
-  const [count, setCount] = useState(0); // ← 错误：useState 未定义
-  return <div>{count}</div>;
-}

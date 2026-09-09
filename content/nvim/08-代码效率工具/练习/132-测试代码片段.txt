@@ -1,5 +1,0 @@
-describe("TestSuite", () => {
-  it("should do something", () => {
-    expect(actual).toBe(expected);
-  });
-});

@@ -1,9 +1,0 @@
-// utils.js
-export function formatDate(date) {
-  return date.toLocaleDateString();
-}
-
-// app.js
-import { formatDate } from "./utils";
-
-const today = formatDate(new Date()); // 光标在 formatDate 上
