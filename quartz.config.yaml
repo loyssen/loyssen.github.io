@@ -18,30 +18,30 @@ configuration:
     fontOrigin: googleFonts
     cdnCaching: true
     typography:
-      header: Schibsted Grotesk
-      body: Source Sans Pro
-      code: IBM Plex Mono
+      header: Space Grotesk
+      body: Inter
+      code: JetBrains Mono
     colors:
       lightMode:
-        light: "#faf8f8"
-        lightgray: "#e5e5e5"
-        gray: "#b8b8b8"
-        darkgray: "#4e4e4e"
-        dark: "#2b2b2b"
-        secondary: "#284b63"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#fff23688"
+        light: "#ffffff"
+        lightgray: "#e2e8f0"
+        gray: "#94a3b8"
+        darkgray: "#475569"
+        dark: "#1e293b"
+        secondary: "#0369a1"
+        tertiary: "#0e7490"
+        highlight: rgba(6, 182, 212, 0.10)
+        textHighlight: "#67e8f9aa"
       darkMode:
-        light: "#161618"
-        lightgray: "#393639"
-        gray: "#646464"
-        darkgray: "#d4d4d4"
-        dark: "#ebebec"
-        secondary: "#7b97aa"
-        tertiary: "#84a59d"
-        highlight: rgba(143, 159, 169, 0.15)
-        textHighlight: "#b3aa0288"
+        light: "#0f172a"
+        lightgray: "#1e293b"
+        gray: "#64748b"
+        darkgray: "#cbd5e1"
+        dark: "#f1f5f9"
+        secondary: "#7dd3fc"
+        tertiary: "#22d3ee"
+        highlight: rgba(34, 211, 238, 0.10)
+        textHighlight: "#0891b2aa"
 plugins:
   - source: "@quartz-community/created-modified-date"
     enabled: true
@@ -111,7 +111,7 @@ plugins:
   - source: "@quartz-community/cname"
     enabled: true
   - source: "@quartz-community/canvas-page"
-    enabled: true
+    enabled: false
   - source: "@quartz-community/content-page"
     enabled: true
   - source: "@quartz-community/folder-page"
@@ -163,7 +163,7 @@ plugins:
       priority: 30
       group: toolbar
   - source: "@quartz-community/reader-mode"
-    enabled: true
+    enabled: false
     layout:
       position: left
       priority: 35
@@ -199,7 +199,7 @@ plugins:
       position: footer
       priority: 50
   - source: "@quartz-community/recent-notes"
-    enabled: true
+    enabled: false
     options:
       title: 最近笔记
       limit: 5
@@ -217,11 +217,11 @@ plugins:
       priority: 25
       display: mobile-only
   - source: "@quartz-community/bases-page"
-    enabled: true
+    enabled: false
     options: {}
     order: 50
   - source: "@quartz-community/note-properties"
-    enabled: true
+    enabled: false
     options:
       includeAll: false
       includedProperties:
