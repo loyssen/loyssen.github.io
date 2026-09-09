@@ -175,7 +175,21 @@ plugins:
       priority: 5
       condition: not-index
   - source: "@quartz-community/comments"
-    enabled: false
+    enabled: true
+    options:
+      provider: giscus
+      options:
+        repo: "loyssen/loyssen.github.io"
+        repoId: "R_kgDOUTgx3w"
+        category: Announcements
+        categoryId: "DIC_kwDOUTgx384DFOOY"
+        mapping: url
+        strict: true
+        reactionsEnabled: true
+        inputPosition: bottom
+        lightTheme: light
+        darkTheme: dark
+        lang: zh-CN
   - source: "@quartz-community/footer"
     enabled: true
     options:
