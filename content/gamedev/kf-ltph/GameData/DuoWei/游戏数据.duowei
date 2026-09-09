@@ -1,0 +1,271 @@
+{
+  "schemaVersion": 1,
+  "id": "tbl_mtcbvxow_vtqp4qd",
+  "name": "游戏数据",
+  "fields": [
+    {
+      "id": "fld_mtcbwhww_mykp8u0",
+      "name": "名称",
+      "type": "text",
+      "required": true,
+      "width": 180
+    },
+    {
+      "id": "fld_mtcbx2k1_j2wu2fn",
+      "name": "数据路径",
+      "type": "text",
+      "required": false,
+      "width": 224
+    },
+    {
+      "id": "fld_mtmkv07b_0677298",
+      "name": "数值类型",
+      "type": "singleSelect",
+      "required": false,
+      "width": 180,
+      "options": [
+        {
+          "id": "opt_mtmkvjn1_qgr30b5",
+          "name": "整型",
+          "color": "var(--color-blue)"
+        },
+        {
+          "id": "opt_mtmkvtdx_xzmus8z",
+          "name": "单精度小数",
+          "color": "var(--color-green)"
+        },
+        {
+          "id": "opt_mtmkvx0d_z227cmy",
+          "name": "双精度小数",
+          "color": "var(--color-orange)"
+        },
+        {
+          "id": "opt_mtmkw1vp_m0l6hta",
+          "name": "布尔",
+          "color": "var(--color-purple)"
+        },
+        {
+          "id": "opt_mtmkw5sf_qqb6tm9",
+          "name": "字符串",
+          "color": "var(--color-red)"
+        },
+        {
+          "id": "opt_mtmkxj26_sjisjk6",
+          "name": "BossKillFlag",
+          "color": "var(--color-cyan)"
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "id": "rec_mtcby04x_1nh9mgf",
+      "revision": 3,
+      "syncUid": "sync_mtcby04x_6i8mgqy",
+      "values": {
+        "fld_mtcbwhww_mykp8u0": "切关锁",
+        "fld_mtcbx2k1_j2wu2fn": "SceneData.TransitionLock",
+        "fld_mtmkv07b_0677298": "opt_mtmkvjn1_qgr30b5"
+      },
+      "notePath": null,
+      "createdAt": "2026-08-28T02:25:54.225Z",
+      "updatedAt": "2026-09-04T06:34:19.730Z",
+      "externalBindings": [
+        {
+          "provider": "feishu",
+          "connectionId": "conn_mtcbxuih_w68qoqw",
+          "externalId": "recvtokNOPy1Uv",
+          "lastSyncedAt": "2026-08-28T02:25:54.225Z"
+        }
+      ]
+    },
+    {
+      "id": "rec_mtcby04x_8p842hr",
+      "revision": 2,
+      "syncUid": "sync_mtcby04x_godiv56",
+      "values": {
+        "fld_mtcbwhww_mykp8u0": "关卡实时时间",
+        "fld_mtcbx2k1_j2wu2fn": "SceneData.ElapsedTime",
+        "fld_mtmkv07b_0677298": "opt_mtmkvtdx_xzmus8z"
+      },
+      "notePath": null,
+      "createdAt": "2026-08-28T02:25:54.225Z",
+      "updatedAt": "2026-09-04T06:34:25.002Z",
+      "externalBindings": [
+        {
+          "provider": "feishu",
+          "connectionId": "conn_mtcbxuih_w68qoqw",
+          "externalId": "recvtokNOPBhRK",
+          "lastSyncedAt": "2026-08-28T02:25:54.225Z"
+        }
+      ]
+    },
+    {
+      "id": "rec_mtcby04x_slq8vu5",
+      "revision": 2,
+      "syncUid": "sync_mtcby04x_2ulvptn",
+      "values": {
+        "fld_mtcbwhww_mykp8u0": "炒场期进行中",
+        "fld_mtcbx2k1_j2wu2fn": "SceneData.WarmingActive",
+        "fld_mtmkv07b_0677298": "opt_mtmkw1vp_m0l6hta"
+      },
+      "notePath": null,
+      "createdAt": "2026-08-28T02:25:54.225Z",
+      "updatedAt": "2026-09-04T06:34:30.067Z",
+      "externalBindings": [
+        {
+          "provider": "feishu",
+          "connectionId": "conn_mtcbxuih_w68qoqw",
+          "externalId": "recvtokNOPSzff",
+          "lastSyncedAt": "2026-08-28T02:25:54.225Z"
+        }
+      ]
+    },
+    {
+      "id": "rec_mtcby04x_cr0j9c5",
+      "revision": 2,
+      "syncUid": "sync_mtcby04x_1ba9z30",
+      "values": {
+        "fld_mtcbwhww_mykp8u0": "炒场期已结束",
+        "fld_mtcbx2k1_j2wu2fn": "SceneData.WarmingHasEnded",
+        "fld_mtmkv07b_0677298": "opt_mtmkw1vp_m0l6hta"
+      },
+      "notePath": null,
+      "createdAt": "2026-08-28T02:25:54.225Z",
+      "updatedAt": "2026-09-04T06:34:33.603Z",
+      "externalBindings": [
+        {
+          "provider": "feishu",
+          "connectionId": "conn_mtcbxuih_w68qoqw",
+          "externalId": "recvtokNOPkmqE",
+          "lastSyncedAt": "2026-08-28T02:25:54.225Z"
+        }
+      ]
+    },
+    {
+      "id": "rec_mtcby04x_urq9b1h",
+      "revision": 2,
+      "syncUid": "sync_mtcby04x_nkzww7h",
+      "values": {
+        "fld_mtcbwhww_mykp8u0": "奖励鱼累计击杀数",
+        "fld_mtcbx2k1_j2wu2fn": "SceneData.AwardFishKilled",
+        "fld_mtmkv07b_0677298": "opt_mtmkvjn1_qgr30b5"
+      },
+      "notePath": null,
+      "createdAt": "2026-08-28T02:25:54.225Z",
+      "updatedAt": "2026-09-04T06:34:52.226Z",
+      "externalBindings": [
+        {
+          "provider": "feishu",
+          "connectionId": "conn_mtcbxuih_w68qoqw",
+          "externalId": "recvtokNOPM9YF",
+          "lastSyncedAt": "2026-08-28T02:25:54.225Z"
+        }
+      ]
+    },
+    {
+      "id": "rec_mtcby04x_l9kp1n1",
+      "revision": 3,
+      "syncUid": "sync_mtcby04x_9fb8o7p",
+      "values": {
+        "fld_mtcbwhww_mykp8u0": "Boss击杀成就位掩码",
+        "fld_mtcbx2k1_j2wu2fn": "UnlockData.BossKillFlags",
+        "fld_mtmkv07b_0677298": "opt_mtmkvjn1_qgr30b5"
+      },
+      "notePath": null,
+      "createdAt": "2026-08-28T02:25:54.225Z",
+      "updatedAt": "2026-09-04T06:36:09.610Z",
+      "externalBindings": [
+        {
+          "provider": "feishu",
+          "connectionId": "conn_mtcbxuih_w68qoqw",
+          "externalId": "recvtokNOPDPKM",
+          "lastSyncedAt": "2026-08-28T02:25:54.225Z"
+        }
+      ]
+    },
+    {
+      "id": "rec_mtcby04x_pgqe39k",
+      "revision": 2,
+      "syncUid": "sync_mtcby04x_6h7d1tc",
+      "values": {
+        "fld_mtcbwhww_mykp8u0": "已击杀鳄鱼标记",
+        "fld_mtcbx2k1_j2wu2fn": "UnlockData.KilledEYu",
+        "fld_mtmkv07b_0677298": "opt_mtmkw1vp_m0l6hta"
+      },
+      "notePath": null,
+      "createdAt": "2026-08-28T02:25:54.225Z",
+      "updatedAt": "2026-09-04T06:36:16.114Z",
+      "externalBindings": [
+        {
+          "provider": "feishu",
+          "connectionId": "conn_mtcbxuih_w68qoqw",
+          "externalId": "recvtokNOPeTNg",
+          "lastSyncedAt": "2026-08-28T02:25:54.225Z"
+        }
+      ]
+    }
+  ],
+  "views": [
+    {
+      "id": "view_mtcbvxow_bx0brpv",
+      "name": "表格",
+      "fieldOrder": [
+        "fld_mtcbwhww_mykp8u0",
+        "fld_mtcbx2k1_j2wu2fn",
+        "fld_mtmkv07b_0677298"
+      ],
+      "hiddenFields": [],
+      "sorts": [],
+      "filters": [],
+      "filterConjunction": "and",
+      "colorRules": [],
+      "collapsedDetailGroups": [],
+      "type": "grid",
+      "rowHeight": "default",
+      "rowHeights": {},
+      "frozenFieldCount": 1,
+      "groupFieldId": null,
+      "groupBy": [],
+      "collapsedGroups": [],
+      "wrapText": false,
+      "columnSummaries": {}
+    }
+  ],
+  "activeViewId": "view_mtcbvxow_bx0brpv",
+  "meta": {
+    "createdAt": "2026-08-28T02:24:17.744Z",
+    "updatedAt": "2026-09-04T08:47:27.423Z",
+    "revision": 32,
+    "writerVersion": 8
+  },
+  "externalConnections": [
+    {
+      "id": "conn_mtcbxuih_w68qoqw",
+      "kind": "tabular",
+      "accountKey": "feishu:cli_aa1a5aed0a799d2d",
+      "fieldMappings": [
+        {
+          "localFieldId": "fld_mtcbwhww_mykp8u0",
+          "remoteFieldId": "fldm6QQ3Il",
+          "direction": "both"
+        },
+        {
+          "localFieldId": "fld_mtcbx2k1_j2wu2fn",
+          "remoteFieldId": "fldhbn9vmY",
+          "direction": "both"
+        }
+      ],
+      "syncMode": "manual",
+      "deletionPolicy": "review",
+      "schemaPolicy": "read-only",
+      "enabled": true,
+      "provider": "feishu",
+      "appToken": "R9cewsJGCiLdxvkZNZtcngH0n42",
+      "tableId": "tblUcXEEi8hubjLD",
+      "targetUrl": "https://fcn3wdkd3c1q.feishu.cn/wiki/R9cewsJGCiLdxvkZNZtcngH0n42?table=tblUcXEEi8hubjLD&view=vewWmDgKdv",
+      "authMode": "user",
+      "lastSyncAt": "2026-08-28T02:25:54.295Z"
+    }
+  ]
+}

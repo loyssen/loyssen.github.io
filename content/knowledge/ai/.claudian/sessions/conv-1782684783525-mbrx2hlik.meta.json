@@ -1,0 +1,22 @@
+{
+  "id": "conv-1782684783525-mbrx2hlik",
+  "providerId": "claude",
+  "title": "Greet user",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782684783528,
+  "updatedAt": 1782687423059,
+  "lastResponseAt": 1782687423055,
+  "sessionId": "6adac95b-44b4-4a15-b161-39368df9bfd3",
+  "providerState": {
+    "providerSessionId": "6adac95b-44b4-4a15-b161-39368df9bfd3"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 941,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 134656,
+    "contextWindow": 200000,
+    "contextTokens": 135597,
+    "percentage": 68
+  }
+}

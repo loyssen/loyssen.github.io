@@ -1,0 +1,9 @@
+:function! WrapWithTag(tag)
+:  normal! `<
+:  execute 'normal! i<' . a:tag . '>'
+:  normal! `>
+:  execute 'normal! a</' . a:tag . '>'
+:endfunction
+
+" 调用
+:'<,'>call WrapWithTag('div')

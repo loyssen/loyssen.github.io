@@ -1,0 +1,6 @@
+"""
+This is a long
+multi-line
+documentation
+string
+"""

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 18" width="480" height="270">
+  <rect width="32" height="18" fill="#f8fafc" stroke="#cbd5e1"/>
+  <line x1="16" y1="0.6" x2="16" y2="16" stroke="#e2e8f0" stroke-width="0.25"/>
+  <line x1="1" y1="9" x2="30" y2="9" stroke="#e2e8f0" stroke-width="0.25"/>
+<circle cx="17.47" cy="10.085" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="16.96" cy="12.292" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="14.612" cy="13.508" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="11.806" cy="12.386" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="10.682" cy="9.173" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="12.544" cy="5.878" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="16.619" cy="5.017" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="20.272" cy="7.726" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="20.703" cy="12.637" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="17.057" cy="16.5" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="11.364" cy="16.335" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="7.452" cy="11.684" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="8.37" cy="5.288" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="14.07" cy="1.5" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="21.064" cy="3.319" r="0.5" fill="#3b82f6" opacity="0.9"/>
+<circle cx="24.548" cy="10.085" r="0.5" fill="#3b82f6" opacity="0.9"/>
+  <circle cx="16" cy="9" r="0.3" fill="#ef4444"/>
+  <circle cx="27.8" cy="1.4" r="0.5" fill="#3b82f6"/><text x="28.7" y="1.75" font-size="1.2" fill="#334155">鱼位</text>
+</svg>

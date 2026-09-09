@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>路径点编辑器</title>
+<style>
+:root{--bg:#1e222a;--surface:#242933;--surface2:#2a303c;--border:#3a4150;--fg:#e8ebf1;--muted:#98a1b3;--accent:#2563eb;--accent-h:#3b82f6;--accent-dim:rgba(37,99,235,.16);--ok:#34d399;--ok-bg:rgba(52,211,153,.10);--err:#f87171;--err-bg:rgba(248,113,113,.10);--warn:#fbbf24;--warn-bg:rgba(251,191,36,.08);--r:4px}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:13px/1.5 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;display:flex;flex-direction:column;overflow:hidden}
+button{font:inherit;padding:4px 12px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface2);color:var(--fg);cursor:pointer;white-space:nowrap}
+button:hover:not(:disabled){border-color:var(--accent-h)}
+button:disabled{opacity:.45;cursor:default}
+button.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+button.primary:hover:not(:disabled){background:var(--accent-h);border-color:var(--accent-h)}
+input[type=number],input[type=text],select{font:inherit;padding:3px 8px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface2);color:var(--fg)}
+input[type=number]{width:64px}
+input[readonly]{color:var(--muted)}
+.topbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:var(--surface);border-bottom:1px solid var(--border);padding:8px 16px}
+.brand{font-size:14px;font-weight:600;margin-right:4px;white-space:nowrap}
+.brand .docname{font-weight:400;color:var(--muted);margin-left:8px;font-size:12px}
+.tsep{width:1px;height:20px;background:var(--border);margin:0 4px;flex:none}
+.tgroup{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tlabel{font-size:11px;color:var(--muted);white-space:nowrap}
+.chk{display:inline-flex;gap:4px;align-items:center;color:var(--muted);font-size:12px;white-space:nowrap;cursor:pointer}
+.chk input{margin:0}
+.stat{font-variant-numeric:tabular-nums;color:var(--muted);font-size:12px;white-space:nowrap}
+.dwstat{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);white-space:nowrap}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--muted);display:inline-block;flex:none}
+.dot.ok{background:var(--ok)}.dot.warn{background:var(--warn)}
+#dwSel{max-width:220px;min-width:120px}
+#applyBtn{font-weight:600}
+.main{flex:1;display:flex;min-height:0}
+.stage{flex:1;min-width:0;overflow:auto;padding:16px;display:flex;justify-content:center;align-items:flex-start}
+svg{width:100%;height:auto;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);touch-action:none;cursor:crosshair}
+.main.noside .side{display:none}
+.side{width:304px;flex:none;background:var(--surface);border-left:1px solid var(--border);overflow-y:auto;padding:12px}
+.sidehead{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:.05em;margin:4px 0 8px}
+.sec{margin-bottom:16px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0;align-items:center}
+.hint{color:var(--muted);font-size:11px;margin:4px 0}
+.lbl{font-size:12px;color:var(--muted)}
+input[type=text].pname{width:100%;border:none;background:transparent;padding:0;color:var(--fg);font:inherit}
+.vline{font-size:12px}
+.statusbar{display:flex;align-items:center;gap:16px;background:var(--surface);border-top:1px solid var(--border);padding:0 16px;min-height:32px;font-size:12px;color:var(--muted);flex:none}
+.statusbar .state{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.statusbar .state b{color:var(--fg)}
+.statusbar .msg{flex:none;max-width:72%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right}
+.statusbar .msg.ok{color:var(--ok)}.statusbar .msg.err{color:var(--err)}.statusbar .msg.warn{color:var(--warn)}.statusbar .msg.info{color:var(--fg)}
+.statusbar.t-ok{background:var(--ok-bg)}.statusbar.t-err{background:var(--err-bg)}.statusbar.t-warn{background:var(--warn-bg)}
+.statusbar.grow{display:block;min-height:32px;max-height:180px;overflow-y:auto;padding:6px 16px}
+.statusbar.grow .state{display:none}
+.statusbar.grow .msg{display:block;max-width:none;white-space:pre-wrap;text-align:left;font:11px/1.5 ui-monospace,Consolas,monospace}
+
+/* 滑轮缩放自适应（配合页尾 zoomfit 脚本）：zfit 时 body 固定为虚拟视口尺寸；窄时侧栏转下方面板 */
+html.zfit{overflow:hidden}
+html.zfit body{width:var(--vwidth);height:var(--vheight)}
+.zfit-narrow .main{flex-direction:column}
+.zfit-narrow .side{width:auto;max-height:46%;border-left:none;border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <span class="brand">路径点编辑器<span class="docname" id="docName"></span></span>
+ <div class="tsep"></div>
+ <div class="tgroup"><button id="reset" title="放弃未保存修改，恢复最近一次从多维表格载入的内容">重置</button></div>
+ <div class="tsep"></div>
+ <div class="tgroup">
+  <button id="undo" title="撤销 (Ctrl+Z)">撤销</button>
+  <button id="redo" title="重做 (Ctrl+Y)">重做</button>
+  <button id="del" title="删除当前选中的点">删除选中</button>
+  <button id="addend" title="在路径尾部加点">尾加点</button>
+  <button id="rev" title="反转路径方向（起终点互换）">反向</button>
+ </div>
+ <div class="tsep"></div>
+ <div class="tgroup">
+  <label class="chk">视野 <select id="view">
+    <option value="game" selected>游戏视场</option>
+    <option value="wide">含屏外全程</option>
+  </select></label>
+  <label class="chk"><input id="smooth" type="checkbox" checked> 平滑预览</label>
+  <label class="chk"><input id="snap" type="checkbox"> 吸附 0.5</label>
+  <span class="stat" id="total"></span>
+ </div>
+ <div class="tsep"></div>
+ <div class="tgroup">
+  <span class="tlabel">多维表格</span>
+  <button id="dwConn" title="连接本地服务并拉取条目清单（启动：Obsidian 侧边栏 ▶「数据管线启动器」或双击 GameData/tools/Program/start.bat，默认 127.0.0.1:8712）">连接桥</button>
+  <span class="dwstat"><i class="dot warn" id="dwDot"></i><span id="dwStat">未连接</span></span>
+  <select id="dwSel"><option value="">条目…</option></select>
+  <button id="dwLoad" title="载入选中条目到画布（Custom=点位 / Random=边界参数；替换当前画布）">载入</button>
+  <button id="dwSave" class="primary" title="写回选中条目（最小手术：Custom=Points / Random=BoundInner+BoundOuter+WaypointCount 三键齐，桥写后重读断言）">保存到多维表格</button>
+ </div>
+ <div class="tsep"></div>
+ <div class="tgroup">
+  <button id="applyBtn" class="primary" title="直出应用：.duowei → json + C#（duowei_export 直出，经本地服务执行，最长 5 分钟）">应用数据到游戏</button>
+  <button id="sideToggle" title="显示/隐藏侧栏">侧栏</button>
+ </div>
+</header>
+<div class="main" id="main">
+ <div class="stage">
+  <svg id="svg" viewBox="-16 -9 32 18" tabindex="0">
+    <g id="gridG"></g>
+    <g id="rawG" transform="scale(1,-1)"></g>
+    <g id="curveG" transform="scale(1,-1)"></g>
+    <g id="ptsG" transform="scale(1,-1)"></g>
+  </svg>
+ </div>
+ <aside class="side">
+  <div class="sec">
+   <div class="sidehead">类型与参数</div>
+   <div class="row" style="margin:4px 0 8px">
+    <select id="ptype"><option value="custom">Custom（点位路径）</option><option value="random">Random（随机路径）</option></select>
+   </div>
+   <div id="customPanel">
+    <div class="lbl">路径名 / Id</div>
+    <div class="row" style="margin:4px 0"><input type="text" id="pname" class="pname" placeholder="路径名" style="flex:1"><input type="text" id="pid" readonly title="载入自动带出（Id 在 Obsidian 侧维护）" style="width:150px"></div>
+   </div>
+   <div id="randomPanel" style="display:none">
+    <div class="lbl">Random 参数</div>
+    <div class="row" style="margin:4px 0">
+      内界 x<input id="rix" type="number" step="0.5" style="width:56px"> y<input id="riy" type="number" step="0.5" style="width:56px">
+      外界 x<input id="rox" type="number" step="0.5" style="width:56px"> y<input id="roy" type="number" step="0.5" style="width:56px">
+      途经点<input id="rwc" type="number" step="1" min="1" style="width:52px">
+    </div>
+   </div>
+  </div>
+  <div class="sec">
+   <div class="sidehead">校验</div>
+   <div id="valid" style="max-height:150px;overflow:auto"></div>
+  </div>
+ </aside>
+</div>
+<footer class="statusbar" id="statusbar">
+ <span class="state" id="statusState"></span>
+ <span class="msg" id="msg"></span>
+</footer>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+let S=null,sel=new Set(),drag=null,rect=null,dragInit=[];
+let hist=[],hi=-1;
+let loadedBackup=null,loadedLabel=''; // 最近一次从多维表格载入的内容（「重置」恢复基准）
+let VW={x:-16,y:-9,w:32,h:18};
+const DRAFT='pp-draft-v1';
+function saveDraft(){try{localStorage.setItem(DRAFT,JSON.stringify({t:Date.now(),s:S}));}catch(e){}}
+function loadDraft(){try{const r=localStorage.getItem(DRAFT);if(!r)return null;const o=JSON.parse(r);return o&&o.s&&o.s.Points?o:null;}catch(e){return null;}}
+function pushHist(){if(!S)return;hist=hist.slice(0,hi+1);hist.push(JSON.parse(JSON.stringify(S)));if(hist.length>60)hist.shift();hi=hist.length-1;saveDraft();}
+function undo(){if(hi<=0)return;hi--;S=JSON.parse(JSON.stringify(hist[hi]));sel=new Set();render();}
+function redo(){if(hi>=hist.length-1)return;hi++;S=JSON.parse(JSON.stringify(hist[hi]));sel=new Set();render();}
+function newGuid(){return 'pp'+Date.now().toString(16)+Math.random().toString(16).slice(2,10);}
+const sample=()=>({Id:newGuid(),Name:'新路径_斜线',Description:null,Points:[[-8,-8],[0,0],[8,8]]});
+const sampleR=()=>({Id:newGuid(),Name:'新随机路径',BoundInner:{x:-3,y:-3},BoundOuter:{x:-2,y:-2},WaypointCount:1});
+function esc2(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/"/g,'&quot;');}
+function setView(v){VW=v==='wide'?{x:-20,y:-28,w:40,h:56}:{x:-16,y:-9,w:32,h:18};$('svg').setAttribute('viewBox',VW.x+' '+VW.y+' '+VW.w+' '+VW.h);renderGrid();render();}
+function renderGrid(){const st=VW.w>36?2:1;let h='';for(let x=Math.ceil(VW.x);x<=VW.x+VW.w;x+=st)h+='<line x1="'+x+'" y1="'+VW.y+'" x2="'+x+'" y2="'+(VW.y+VW.h)+'" stroke="var(--border)" stroke-width="0.06" opacity="'+(x===0?0.9:0.35)+'"/>';for(let y=Math.ceil(VW.y);y<=VW.y+VW.h;y+=st)h+='<line x1="'+VW.x+'" y1="'+y+'" x2="'+(VW.x+VW.w)+'" y2="'+y+'" stroke="var(--border)" stroke-width="0.06" opacity="'+(y===0?0.9:0.35)+'"/>';if(VW.w<=36)h+='<rect x="-16" y="-9" width="32" height="18" fill="none" stroke="var(--accent)" stroke-width="0.08" opacity="0.4" stroke-dasharray="0.6 0.4"/>';
+ if(S&&S.BoundInner){const bi=S.BoundInner,bo=S.BoundOuter;h+='<rect x="'+Math.min(bi.x,bo.x)+'" y="'+(-Math.max(bi.y,bo.y))+'" width="'+Math.abs(bo.x-bi.x)+'" height="'+Math.abs(bo.y-bi.y)+'" fill="var(--accent)" opacity="0.1" stroke="var(--accent)" stroke-width="0.1" stroke-dasharray="0.5 0.3"/>';}
+ $('gridG').innerHTML=h;}
+function cat(pts){const n=pts.length;if(n<2)return pts;const P=i=>pts[Math.max(0,Math.min(n-1,i))];const o=[];for(let i=0;i<n-1;i++){const p0=P(i-1),p1=P(i),p2=P(i+1),p3=P(i+2);for(let j=0;j<10;j++){const u=j/10,u2=u*u,u3=u2*u;o.push([.5*(2*p1[0]+(-p0[0]+p2[0])*u+(2*p0[0]-5*p1[0]+4*p2[0]-p3[0])*u2+(-p0[0]+3*p1[0]-3*p2[0]+p3[0])*u3),.5*(2*p1[1]+(-p0[1]+p2[1])*u+(2*p0[1]-5*p1[1]+4*p2[1]-p3[1])*u2+(-p0[1]+3*p1[1]-3*p2[1]+p3[1])*u3)]);}}o.push(pts[n-1].slice());return o;}
+const pd=pts=>pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(3)+' '+p[1].toFixed(3)).join(' ');
+function render(){if(!S)return;
+ const isR=!!S.BoundInner;
+ $('ptype').value=isR?'random':'custom';
+ $('customPanel').style.display=isR?'none':'';
+ $('randomPanel').style.display=isR?'':'none';
+ $('pname').value=S.Name||'';$('pid').value=S.Id||'';
+ if(isR){$('rix').value=S.BoundInner.x;$('riy').value=S.BoundInner.y;$('rox').value=S.BoundOuter.x;$('roy').value=S.BoundOuter.y;$('rwc').value=S.WaypointCount;}
+ const pts=S.Points||[];
+ $('docName').textContent=S.Name||'未命名';
+ $('total').textContent=isR?('Random · '+S.WaypointCount+' 途经点'):(pts.length+' 点');
+ if(!isR){
+  $('rawG').innerHTML=pts.length>1?'<path d="'+pd(pts)+'" fill="none" stroke="var(--muted)" stroke-width="0.12" opacity="0.75"/>':'';
+  $('curveG').innerHTML=($('smooth').checked&&pts.length>1)?'<path d="'+pd(cat(pts))+'" fill="none" stroke="#eab308" stroke-width="0.22" opacity="0.9"/>':'';
+  const pr=VW.w>36?0.6:0.45;
+  $('ptsG').innerHTML=pts.map((p,i)=>{const a=sel.has(i),f=i===0,l=pts.length>1&&i===pts.length-1;const col=f?'#22c55e':(l?'#ef4444':'#06b6d4');let x='';
+   if(f||l)x='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(pr*2.4)+'" fill="none" stroke="'+col+'" stroke-width="0.14"/>';
+   return '<circle cx="'+p[0]+'" cy="'+p[1]+'" r="'+(a?pr+0.15:pr)+'" fill="'+(a?'none':col)+'" stroke="'+(a?'var(--accent)':col)+'" stroke-width="'+(a?0.12:0)+'"/>'+x;}).join('');
+ }else{$('rawG').innerHTML='';$('curveG').innerHTML='';$('ptsG').innerHTML='';}
+ if(rect){const x0=Math.min(rect.x0,rect.x1),y0=Math.min(rect.y0,rect.y1);$('ptsG').innerHTML+='<rect x="'+x0+'" y="'+y0+'" width="'+Math.abs(rect.x1-rect.x0)+'" height="'+Math.abs(rect.y1-rect.y0)+'" fill="var(--accent)" opacity="0.12" stroke="var(--accent)" stroke-width="0.08" stroke-dasharray="0.3 0.2"/>';}
+ renderGrid();renderValid();renderStatus();
+ $('undo').disabled=hi<=0;$('redo').disabled=hi>=hist.length-1;}
+function renderStatus(){const st=$('statusState');let t=(S.BoundInner?'Random 路径：边界+途经点参数':'Custom 路径：🟢起点 → 🔴终点'+($('smooth').checked?' · 黄线=平滑生效形态':''));
+ if(sel.size)t+='　·　选中 <b>'+sel.size+'</b> 点'+(sel.size===1?'（'+S.Points[[...sel][0]][0]+','+S.Points[[...sel][0]][1]+'）':'（可拖拽/方向键整体微调）');
+ t+='　·　来源：'+esc2(loadedLabel||'示例/草稿');
+ st.innerHTML=t;}
+function setMsg(t,kind){const sb=$('statusbar'),m=$('msg');m.textContent=t;m.className='msg '+(kind||'info');
+ sb.className='statusbar'+(kind==='ok'?' t-ok':kind==='err'?' t-err':kind==='warn'?' t-warn':'')+(t.length>140?' grow':'');
+ if(sb.classList.contains('grow'))sb.scrollTop=0;}
+function renderValid(){const el=$('valid'),pts=S.Points||[];let h='';
+ if(S.BoundInner){const bi=S.BoundInner,bo=S.BoundOuter;
+  if(Math.abs(bi.x)>=Math.abs(bo.x)&&Math.abs(bi.y)>=Math.abs(bo.y))h='<div class="vline" style="color:var(--ok)">✓ Random：内界(|'+bi.x+'|,|'+bi.y+'|) < 外界(|'+bo.x+'|,|'+bo.y+'|) · '+S.WaypointCount+' 途经点</div>';
+  else h='<div class="vline" style="color:var(--err)">✗ 内界应小于外界</div>';
+ }else if(pts.length>=2){let L=0;for(let i=1;i<pts.length;i++)L+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);
+  h='<div class="vline" style="color:var(--ok)">✓ '+pts.length+' 点 · 折线长 '+L.toFixed(1)+'</div>';
+  const outP=pts.filter(p=>Math.abs(p[0])>16||Math.abs(p[1])>9).length;
+  if(outP&&VW.w<=36)h+='<div class="vline" style="color:var(--warn)">⚠ '+outP+' 点在视场外（鱼从屏外游入属正常，切「含屏外全程」视野查看）</div>';
+ }else h='<div class="vline" style="color:var(--muted)">'+pts.length+' 点（至少 2 点成路径）</div>';
+ el.innerHTML=h;}
+function toGame(ev){const r=$('svg').getBoundingClientRect();return[(ev.clientX-r.left)/r.width*VW.w+VW.x,VW.y+VW.h-(ev.clientY-r.top)/r.height*VW.h];}
+const snap=v=>$('snap').checked?Math.round(v*2)/2:v;
+function hit(gx,gy){const pts=S.Points||[];const tol=VW.w>36?1.2:0.7;for(let i=0;i<pts.length;i++){if(Math.hypot(pts[i][0]-gx,pts[i][1]-gy)<tol)return i;}return -1;}
+$('svg').addEventListener('pointerdown',e=>{if(!S||S.BoundInner)return;$('svg').focus();const[gx,gy]=toGame(e);
+ if(e.button===2)return;
+ const h=hit(gx,gy);
+ if(h>=0){if(e.shiftKey){sel.has(h)?sel.delete(h):sel.add(h);}else{if(!sel.has(h))sel=new Set([h]);drag={ox:gx,oy:gy};dragInit=[...sel].map(i=>({x:S.Points[i][0],y:S.Points[i][1]}));}}
+ else{if(!e.shiftKey)sel=new Set();rect={x0:gx,y0:gy,x1:gx,y1:gy};}
+ render();e.preventDefault();});
+window.addEventListener('pointermove',e=>{if(!S||S.BoundInner)return;
+ if(drag){const[gx,gy]=toGame(e),dx=snap(gx-drag.ox),dy=snap(gy-drag.oy);let i=0;sel.forEach(k=>{const o=dragInit[i++],p=S.Points[k];if(o){p[0]=Math.round((o.x+dx)*100)/100;p[1]=Math.round((o.y+dy)*100)/100;}});render();return;}
+ if(rect){const[gx,gy]=toGame(e);rect.x1=gx;rect.y1=gy;render();}});
+window.addEventListener('pointerup',()=>{if(!S)return;
+ if(rect){const x0=Math.min(rect.x0,rect.x1),x1=Math.max(rect.x0,rect.x1),y0=Math.min(rect.y0,rect.y1),y1=Math.max(rect.y0,rect.y1),add=[];(S.Points||[]).forEach((p,i)=>{if(p[0]>=x0&&p[0]<=x1&&p[1]>=y0&&p[1]<=y1)add.push(i);});if(add.length)sel=new Set(add);}
+ const dirty=!!(drag||rect);if(drag)pushHist();drag=null;rect=null;dragInit=[];if(dirty)render();});
+$('svg').addEventListener('contextmenu',e=>{if(!S||S.BoundInner)return;e.preventDefault();const[gx,gy]=toGame(e),h=hit(gx,gy);if(h<0)return;pushHist();S.Points.splice(h,1);const ns=new Set();sel.forEach(k=>{if(k>h)ns.add(k-1);else if(k!==h)ns.add(k);});sel=ns;render();});
+function delSel(){if(!S||!sel.size)return;pushHist();const arr=[...sel].sort((a,b)=>b-a);arr.forEach(i=>S.Points.splice(i,1));sel=new Set();render();}
+$('svg').addEventListener('keydown',e=>{
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'){e.preventDefault();e.shiftKey?redo():undo();return;}
+ if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'){e.preventDefault();redo();return;}
+ if(e.key==='Delete'||e.key==='Backspace'){delSel();e.preventDefault();return;}
+ if(!sel.size)return;const st=e.shiftKey?1:0.1,dir=e.key==='ArrowLeft'?[-st,0]:e.key==='ArrowRight'?[st,0]:e.key==='ArrowUp'?[0,st]:e.key==='ArrowDown'?[0,-st]:null;if(!dir)return;
+ sel.forEach(k=>{S.Points[k][0]+=dir[0];S.Points[k][1]+=dir[1];});e.preventDefault();render();});
+$('svg').addEventListener('dblclick',e=>{if(!S||S.BoundInner)return;const[gx,gy]=toGame(e);if(hit(gx,gy)>=0)return;pushHist();S.Points.push([snap(gx),snap(gy)]);sel=new Set([S.Points.length-1]);render();});
+$('view').addEventListener('change',e=>setView(e.target.value));
+$('smooth').addEventListener('change',render);
+$('ptype').addEventListener('change',e=>{const v=e.target.value;if(v==='random'&&!S.BoundInner){pushHist();S.BoundInner={x:-3,y:-3};S.BoundOuter={x:-2,y:-2};S.WaypointCount=1;delete S.Points;sel=new Set();render();}else if(v==='custom'&&S.BoundInner){pushHist();delete S.BoundInner;delete S.BoundOuter;delete S.WaypointCount;S.Points=S.Points||[[-8,-8],[8,8]];sel=new Set();render();}});
+$('pname').addEventListener('change',()=>{if(S){S.Name=$('pname').value;pushHist();render();}});
+['rix','riy','rox','roy','rwc'].forEach(id=>{$(id).addEventListener('change',()=>{if(S&&S.BoundInner){pushHist();S.BoundInner={x:+$('rix').value,y:+$('riy').value};S.BoundOuter={x:+$('rox').value,y:+$('roy').value};S.WaypointCount=+$('rwc').value||1;render();}});});
+$('undo').onclick=undo;$('redo').onclick=redo;$('del').onclick=delSel;
+$('addend').onclick=()=>{if(!S||S.BoundInner)return;pushHist();const pts=S.Points,l=pts[pts.length-1]||[0,0];pts.push([l[0]+2,l[1]+1]);sel=new Set([pts.length-1]);render();};
+$('rev').onclick=()=>{if(!S||S.BoundInner)return;pushHist();S.Points.reverse();sel=new Set();render();};
+function applyData(d,src){S=d;sel=new Set();hist=[];hi=-1;pushHist();const xs=(d.Points||[]).map(p=>Math.max(Math.abs(p[0]),Math.abs(p[1])));if(xs.length&&Math.max(...xs)>16)setView('wide'),$('view').value='wide';else if(VW.w>36){setView('game');$('view').value='game';}else render();}
+$('reset').onclick=()=>{if(loadedBackup){applyData(JSON.parse(JSON.stringify(loadedBackup)),'reset');setMsg('已重置为最近载入的内容（'+esc2(loadedLabel)+'）','ok');}else setMsg('尚未从多维表格载入条目，无内容可重置（当前画布为示例/草稿）','warn');};
+$('sideToggle').onclick=()=>{$('main').classList.toggle('noside');};
+const draft=loadDraft();
+if(draft)S=draft.s; // 静默恢复草稿（无提示条）
+else S=sample();
+hist=[];hi=-1;pushHist();renderGrid();render();
+// ── 多维表格 .duowei 桥接（唯一数据通路）：本地服务 server.py（默认 127.0.0.1:8712；?dwport=xxxx 或 localStorage dwBridgePort 覆盖）──
+// Type/Id 是 singleSelect（值=选项 id）——服务端已还原 'Custom'/'Random' 与 GUID 名；仅几何字段经服务读写
+const DW_PORT=(()=>{const q=new URLSearchParams(location.search).get('dwport');if(q)return q;try{return localStorage.getItem('dwBridgePort')||'8712';}catch(e){return '8712';}})();
+let DW_CONNECTED=false;
+// 从服务打开时用同源相对路径请求（不绑定主机/端口）；file:// 打开时走本地服务绝对地址
+const DW_BASE=location.protocol.startsWith('http')?'':('http://127.0.0.1:'+DW_PORT);
+const dwBridgeDownMsg='服务未启动：Obsidian 侧边栏 ▶「数据管线启动器」或双击 GameData/tools/Program/start.bat（默认端口 8712；用法见 GameData/README.md）';
+function dwStat(t,cls){$('dwStat').textContent=t;$('dwDot').className='dot '+(cls||'');}
+async function dwApi(path,opt){
+ const r=await fetch(DW_BASE+path,Object.assign({mode:'cors'},opt||{}));
+ const j=await r.json();
+ if(!j.ok)throw new Error(j.error||('HTTP '+r.status));
+ return j;}
+const dwSel=$('dwSel');
+async function dwRefresh(){
+ try{
+  const j=await dwApi('/list?table=path');
+  dwSel.innerHTML='<option value="">条目 '+j.count+' …</option>'+j.items.map(it=>'<option value="'+esc2(it.id)+'">['+(it.type==='Random'?'R':'C')+'] '+esc2(it.name)+'</option>').join('');
+  DW_CONNECTED=true;dwStat('已连接 '+j.count+' 条','ok');
+  setMsg('多维表格桥已连接（路径 '+j.count+' 条 · '+(DW_BASE||location.origin)+' · 编辑期间建议别在 Obsidian 同时改该表）','ok');
+ }catch(e){dwStat('未连接','warn');
+  throw e;}}
+$('dwConn').onclick=()=>{dwRefresh().catch(e=>setMsg('连接失败：'+e.message+'　·　'+dwBridgeDownMsg,'err'));};
+$('dwLoad').onclick=async()=>{
+ const id=dwSel.value;
+ if(!id){setMsg('请先在下拉选择要载入的条目（未连接先点「连接桥」）','warn');return;}
+ if(S&&((S.Points&&S.Points.length)||S.BoundInner)&&!confirm('将载入条目替换当前画布（未保存修改会丢失），继续？'))return;
+ try{
+  const j=await dwApi('/record?table=path&id='+encodeURIComponent(id));
+  const rec=j.record;
+  let d;
+  if(rec.Type==='Random'){
+   d={Id:rec.Id,Name:rec.Name,Description:rec.Description||null,BoundInner:JSON.parse(rec.BoundInner),BoundOuter:JSON.parse(rec.BoundOuter),WaypointCount:+rec.WaypointCount||1};
+  }else{
+   const pts=JSON.parse(rec.Points||'[]').map(p=>[+p.x,+p.y]);
+   if(!pts.length)throw new Error('该条目 Points 为空');
+   d={Id:rec.Id,Name:rec.Name,Description:rec.Description||null,Points:pts};
+  }
+  loadedBackup=JSON.parse(JSON.stringify(d));loadedLabel='多维表格：'+rec.Name;
+  applyData(d);
+  setMsg('已从多维表格载入「'+esc2(rec.Name)+'」（'+(rec.Type==='Random'?'Random · '+d.WaypointCount+' 途经点':d.Points.length+' 点')+' · Id '+esc2(rec.Id)+'）','ok');
+ }catch(e){setMsg('多维表格载入失败：'+esc2(e.message)+'　·　'+esc2(dwBridgeDownMsg),'err');}};
+$('dwSave').onclick=async()=>{
+ const id=dwSel.value;
+ if(!id){setMsg('请先在下拉选择保存目标条目（未连接先点「连接桥」）','warn');return;}
+ if(!S){setMsg('画布为空','warn');return;}
+ let fields;
+ if(S.BoundInner){
+  fields={BoundInner:JSON.stringify({x:+S.BoundInner.x,y:+S.BoundInner.y}),BoundOuter:JSON.stringify({x:+S.BoundOuter.x,y:+S.BoundOuter.y}),WaypointCount:S.WaypointCount};
+ }else{
+  if(!S.Points||!S.Points.length){setMsg('当前路径无点位','warn');return;}
+  fields={Points:JSON.stringify(S.Points.map(p=>({x:Math.round(p[0]*1e4)/1e4,y:Math.round(p[1]*1e4)/1e4})))};
+ }
+ try{
+  const chk=await dwApi('/record?table=path&id='+encodeURIComponent(id));
+  const t=chk.record.Type;
+  if(S.BoundInner&&t!=='Random'){setMsg('画布是 Random 参数，目标条目是 Custom（交叉混填拒绝）','warn');return;}
+  if(!S.BoundInner&&t==='Random'){setMsg('画布是 Custom 点位，目标条目是 Random（交叉混填拒绝）','warn');return;}
+  const j=await dwApi('/record',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({table:'path',id:id,fields:fields})});
+  setMsg('已保存到多维表格「'+esc2((dwSel.options[dwSel.selectedIndex]||{}).text||'')+'」（服务已重读断言一致；落地：点「应用数据到游戏」直出，见 GameData/README.md）','ok');
+ }catch(e){setMsg('多维表格保存失败：'+esc2(e.message)+'　·　'+esc2(dwBridgeDownMsg),'err');}};
+// 应用数据到游戏：POST /apply 直出（.duowei→json+C#；服务端并发保护+300s 超时）
+$('applyBtn').onclick=async()=>{
+ const b=$('applyBtn');
+ b.disabled=true;b.textContent='应用中…（最长 5 分钟）';
+ setMsg('直出执行中：.duowei → json + C#（duowei_export，经本地服务 '+(DW_BASE||location.origin)+'）','info');
+ try{
+  const ctl=new AbortController();const tm=setTimeout(()=>ctl.abort(),300000);
+  const r=await fetch(DW_BASE+'/apply',{method:'POST',signal:ctl.signal});
+  clearTimeout(tm);
+  const j=await r.json();
+  setMsg((j.ok?'[OK] 导出通过\n':'[FAIL] 未通过\n')+(j.output||j.error||''),j.ok?'ok':'err');
+ }catch(e){
+  setMsg('[FAIL] 请求失败：'+e.message+'（可能：服务未启动——双击 tools/Program/start.bat）','err');
+ }
+ b.disabled=false;b.textContent='应用数据到游戏';};
+// 实测连接为准（不静态猜测宿主）：任何环境先尝试连接，失败才提示（Obsidian 内置预览 CSP 拦 localhost fetch，需系统浏览器/Unrestricted Mode 打开）
+setMsg('拖拽移动 · 框选/Shift 多选 · 双击加点 · 右键删点 · 方向键微调(Shift=1格) · Ctrl+Z 撤销','info');
+dwRefresh().catch(()=>{}).then(()=>{
+ if(!DW_CONNECTED){
+  setMsg('无法连接本地服务（127.0.0.1:8712）：① 服务未启动——双击 tools/Program/start.bat；② Obsidian 内置预览沙箱拦本地 fetch——用系统浏览器（Chrome/Edge）打开本页面','warn');
+ }
+});
+})();
+</script>
+
+<script>
+// 滑轮缩放自适应：HTML Reader 的缩放是给 html 元素加 transform:scale（视口宽度不变、
+// 媒体查询不触发、放大后右/下溢出不可达）。此处读取该缩放值，把虚拟视口（实际宽高÷缩放）
+// 写入 --vwidth/--vheight 并打 .zfit / .zfit-narrow 标记，布局据此重排为恰好铺满可见区。
+(function(){
+ var last=-1;
+ function zf(){
+  var t=getComputedStyle(document.documentElement).transform;
+  if(!t||t==="none")return 1;
+  var m=t.match(/matrix\(([^)]+)\)/);
+  if(!m)return 1;
+  var a=parseFloat(m[1].split(",")[0]);
+  return a>0?a:1;
+ }
+ function apply(){
+  var s=zf(); if(s===last)return; last=s;
+  var de=document.documentElement;
+  de.style.setProperty("--vwidth",(innerWidth/s)+"px");
+  de.style.setProperty("--vheight",(innerHeight/s)+"px");
+  de.classList.toggle("zfit",s!==1);
+  de.classList.toggle("zfit-narrow",(innerWidth/s)<720);
+ }
+ new MutationObserver(apply).observe(document.documentElement,{attributes:true,attributeFilter:["style"]});
+ addEventListener("resize",apply);
+ apply();
+})();
+</script>
+</body>
+</html>

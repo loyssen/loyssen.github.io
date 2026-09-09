@@ -1,0 +1,8 @@
+mapping = {
+    "word trees": "bear moondd dfds_dd",
+    "world like a trees": "baar moondd dfds_dd",
+    "aword bbar": "trees moondd dfds_dd",
+    "bword trees": "moondd bcar dfds_dd",
+    "trees cord": "dfds_dd bdar moondd",
+    "dord trees": "rear moondd dfds_dd",
+}

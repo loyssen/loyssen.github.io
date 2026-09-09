@@ -1,0 +1,11 @@
+class TodoList {
+  constructor() {}
+  addTodo(text) {}
+  removeTodo(id) {}
+  getTodos() {}
+}
+
+function saveTodos() {}
+function loadTodos() {}
+
+const API_URL = "https://api.example.com";

@@ -1,0 +1,3 @@
+:command! JsonFormat %!jq .
+:command! RemoveTrailing %s/\s\+$//e
+:command! SortLines %!sort

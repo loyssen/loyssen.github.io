@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 18" width="480" height="270">
+<rect width="32" height="18" fill="#f0f9ff" stroke="#93c5fd"/>
+<rect x="1" y="0.5" width="30" height="17" fill="none" stroke="#60a5fa" stroke-dasharray="0.5 0.5"/>
+<line x1="16" y1="0.5" x2="16" y2="17" stroke="#bfdbfe" stroke-width="0.2"/>
+<line x1="0.5" y1="9" x2="31" y2="9" stroke="#bfdbfe" stroke-width="0.2"/>
+<circle cx="16" cy="11.5" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="15.27" cy="10.01" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="13.62" cy="9.77" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="14.81" cy="8.61" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="14.53" cy="6.98" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="16" cy="7.75" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="17.47" cy="6.98" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="17.19" cy="8.61" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="18.38" cy="9.77" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="16.73" cy="10.01" r="0.5" fill="#10b981" opacity="0.92"/>
+<circle cx="27.8" cy="1.40" r="0.5" fill="#10b981"/><text x="28.7" y="1.75" font-size="1.1" fill="#334155">神仙鱼</text>
+</svg>

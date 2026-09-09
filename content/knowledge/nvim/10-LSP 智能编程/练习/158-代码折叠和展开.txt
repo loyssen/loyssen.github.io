@@ -1,0 +1,18 @@
+class UserService {
+  constructor() {
+    this.users = [];
+  }
+
+  async getUser(id) {
+    const response = await fetch(`/api/users/${id}`);
+    return await response.json();
+  }
+
+  async createUser(userData) {
+    const response = await fetch("/api/users", {
+      method: "POST",
+      body: JSON.stringify(userData),
+    });
+    return await response.json();
+  }
+}

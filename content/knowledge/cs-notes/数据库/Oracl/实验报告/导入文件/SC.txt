@@ -1,0 +1,19 @@
+3,001,90
+3,002,85
+4,003,98
+5,004,88
+6,003,85
+6,004,90
+
+insert into userfhb1.sc values('3','001',90);
+insert into userfhb1.sc values('3','002',85);
+insert into userfhb1.sc values('4','003',98);
+insert into userfhb1.sc values('5','004',88);
+insert into userfhb1.sc values('6','003',85);
+insert into userfhb1.sc values('6','004',90);
+
+
+update userfhb1.sc set cno='001' where sno='6' and cno='004';
+update userfhb1.sc set grade=59 
+	where sno in (select sno from userfhb1.sc 
+	where grade in (select min(grade) from userfhb1.sc)) ;

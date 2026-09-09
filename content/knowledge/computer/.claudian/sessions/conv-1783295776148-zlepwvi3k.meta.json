@@ -1,0 +1,23 @@
+{
+  "id": "conv-1783295776148-zlepwvi3k",
+  "providerId": "claude",
+  "title": "整理资料库并撰写二十届四中全会精神学习心得",
+  "titleGenerationStatus": "success",
+  "createdAt": 1783295776148,
+  "updatedAt": 1783296871190,
+  "lastResponseAt": 1783296871190,
+  "sessionId": "1dbfecd6-9fad-45c8-81bf-d6743134da72",
+  "providerState": {
+    "providerSessionId": "1dbfecd6-9fad-45c8-81bf-d6743134da72"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 476,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 52992,
+    "contextWindow": 200000,
+    "contextTokens": 53468,
+    "percentage": 27,
+    "contextWindowIsAuthoritative": true
+  }
+}

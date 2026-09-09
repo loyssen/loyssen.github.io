@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 18" width="480" height="270">
+  <rect width="32" height="18" fill="#f8fafc" stroke="#cbd5e1"/>
+  <line x1="16" y1="0.6" x2="16" y2="16" stroke="#e2e8f0" stroke-width="0.25"/>
+  <line x1="1" y1="9" x2="30" y2="9" stroke="#e2e8f0" stroke-width="0.25"/>
+<circle cx="17.051" cy="9" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="15.884" cy="7.594" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="14.253" cy="9.291" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="16.523" cy="11.065" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="18.355" cy="8.192" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="14.856" cy="6.39" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="13.177" cy="10.527" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="17.953" cy="11.988" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="19.101" cy="6.586" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="13.095" cy="5.845" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="12.851" cy="12.42" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="19.952" cy="12.076" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="18.936" cy="4.506" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="10.962" cy="6.274" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="13.554" cy="14.575" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="22.097" cy="11.094" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="17.671" cy="2.401" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="8.931" cy="7.821" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="15.379" cy="16.5" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="23.886" cy="9" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="14.949" cy="9" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="16.116" cy="10.406" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="17.747" cy="8.709" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="15.477" cy="6.935" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="13.645" cy="9.808" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="17.144" cy="11.61" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="18.823" cy="7.473" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="14.047" cy="6.012" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="12.899" cy="11.414" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="18.905" cy="12.155" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="19.149" cy="5.58" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="12.048" cy="5.924" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="13.064" cy="13.494" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="21.038" cy="11.726" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="18.446" cy="3.425" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="9.903" cy="6.906" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="14.329" cy="15.599" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="23.069" cy="10.179" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="16.621" cy="1.5" r="0.4" fill="#3b82f6" opacity="0.9"/>
+<circle cx="8.114" cy="9" r="0.4" fill="#3b82f6" opacity="0.9"/>
+  <circle cx="16" cy="9" r="0.3" fill="#ef4444"/>
+  <circle cx="27.8" cy="1.4" r="0.5" fill="#3b82f6"/><text x="28.7" y="1.75" font-size="1.2" fill="#334155">鱼位</text>
+</svg>

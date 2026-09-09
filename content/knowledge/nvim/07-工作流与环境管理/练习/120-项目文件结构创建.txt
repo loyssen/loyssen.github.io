@@ -1,0 +1,10 @@
+my-project/
+├── src/
+│   ├── components/
+│   ├── utils/
+│   ├── styles/
+│   └── index.js
+├── public/
+│   └── index.html
+├── tests/
+└── package.json

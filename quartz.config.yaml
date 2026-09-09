@@ -9,7 +9,7 @@ configuration:
   analytics:
     provider: null
   locale: zh-CN
-  baseUrl: sicamocisk.github.io
+  baseUrl: loyssen.github.io
   ignorePatterns:
     - private
     - templates
@@ -180,7 +180,7 @@ plugins:
     enabled: true
     options:
       links:
-        GitHub: https://github.com/sicamocisk
+        GitHub: https://github.com/loyssen
     layout:
       position: footer
       priority: 50

@@ -1,0 +1,186 @@
+{
+  "schemaVersion": 1,
+  "id": "tbl_mtjx2gmb_92stxga",
+  "name": "未命名多维表格",
+  "fields": [
+    {
+      "id": "fld_mtjx2gmb_hc0ovho",
+      "name": "标题",
+      "type": "text",
+      "width": 240
+    },
+    {
+      "id": "fld_mtjx2gmb_lf6k8gz",
+      "name": "状态",
+      "type": "singleSelect",
+      "width": 140,
+      "options": [
+        {
+          "id": "opt_mtjx2gmb_xu2npi3",
+          "name": "待处理",
+          "color": "var(--color-orange)"
+        },
+        {
+          "id": "opt_mtjx2gmb_61iheav",
+          "name": "进行中",
+          "color": "var(--color-blue)"
+        },
+        {
+          "id": "opt_mtjx2gmb_ugvycqp",
+          "name": "已完成",
+          "color": "var(--color-green)"
+        }
+      ]
+    },
+    {
+      "id": "fld_mtjx2gmb_pfnm3fl",
+      "name": "完成",
+      "type": "checkbox",
+      "width": 96
+    }
+  ],
+  "records": [],
+  "views": [
+    {
+      "id": "view_mtjx2gmb_wbjflcc",
+      "name": "表格",
+      "type": "grid",
+      "fieldOrder": [
+        "fld_mtjx2gmb_hc0ovho",
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ],
+      "hiddenFields": [],
+      "sorts": [],
+      "filters": [],
+      "filterConjunction": "and",
+      "colorRules": [],
+      "collapsedDetailGroups": [],
+      "rowHeight": "default",
+      "rowHeights": {},
+      "frozenFieldCount": 1,
+      "groupFieldId": null,
+      "groupBy": [],
+      "collapsedGroups": [],
+      "wrapText": false,
+      "columnSummaries": {}
+    },
+    {
+      "id": "view_mtjx2gmb_efaaeoh",
+      "name": "看板",
+      "type": "kanban",
+      "fieldOrder": [
+        "fld_mtjx2gmb_hc0ovho",
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ],
+      "hiddenFields": [],
+      "sorts": [],
+      "filters": [],
+      "filterConjunction": "and",
+      "colorRules": [],
+      "collapsedDetailGroups": [],
+      "groupFieldId": "fld_mtjx2gmb_lf6k8gz",
+      "titleFieldId": "fld_mtjx2gmb_hc0ovho",
+      "cardFieldIds": [
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ]
+    },
+    {
+      "id": "view_mtjx2gmb_jmfclz2",
+      "name": "画廊",
+      "type": "gallery",
+      "fieldOrder": [
+        "fld_mtjx2gmb_hc0ovho",
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ],
+      "hiddenFields": [],
+      "sorts": [],
+      "filters": [],
+      "filterConjunction": "and",
+      "colorRules": [],
+      "collapsedDetailGroups": [],
+      "coverFieldId": null,
+      "titleFieldId": "fld_mtjx2gmb_hc0ovho",
+      "cardFieldIds": [
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ],
+      "layoutPreset": "4x4",
+      "coverFit": "smart",
+      "cardClickAction": "select"
+    },
+    {
+      "id": "view_mtjx2gmb_ragjbpt",
+      "name": "日历",
+      "type": "calendar",
+      "fieldOrder": [
+        "fld_mtjx2gmb_hc0ovho",
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ],
+      "hiddenFields": [],
+      "sorts": [],
+      "filters": [],
+      "filterConjunction": "and",
+      "colorRules": [],
+      "collapsedDetailGroups": [],
+      "dateFieldId": null,
+      "colorFieldId": null,
+      "scheduleStartFieldId": null,
+      "scheduleEndFieldId": null,
+      "scheduleAllDayFieldId": null,
+      "scheduleDayCount": 7,
+      "scheduleSlotMinutes": 30,
+      "scheduleDefaultDurationMinutes": 60,
+      "scheduleStartHour": 8,
+      "titleFieldId": "fld_mtjx2gmb_hc0ovho",
+      "cardFieldIds": [
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ],
+      "month": "2026-09",
+      "displayMode": "month",
+      "anchorDate": "2026-09-02",
+      "taskDisplayMode": "flat",
+      "collapsedTaskRecordIds": []
+    },
+    {
+      "id": "view_mtjx2gmb_e57prnn",
+      "name": "时间线",
+      "type": "timeline",
+      "fieldOrder": [
+        "fld_mtjx2gmb_hc0ovho",
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ],
+      "hiddenFields": [],
+      "sorts": [],
+      "filters": [],
+      "filterConjunction": "and",
+      "colorRules": [],
+      "collapsedDetailGroups": [],
+      "startFieldId": null,
+      "endFieldId": null,
+      "colorFieldId": null,
+      "titleFieldId": "fld_mtjx2gmb_hc0ovho",
+      "cardFieldIds": [
+        "fld_mtjx2gmb_lf6k8gz",
+        "fld_mtjx2gmb_pfnm3fl"
+      ],
+      "month": "2026-09",
+      "scale": "month",
+      "anchorDate": "2026-09-02",
+      "taskDisplayMode": "flat",
+      "collapsedTaskRecordIds": []
+    }
+  ],
+  "meta": {
+    "createdAt": "2026-09-02T09:51:37.379Z",
+    "updatedAt": "2026-09-02T09:51:37.379Z",
+    "revision": 0,
+    "writerVersion": 8
+  }
+}

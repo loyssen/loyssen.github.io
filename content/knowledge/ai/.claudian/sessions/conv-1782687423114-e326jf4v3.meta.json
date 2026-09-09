@@ -1,0 +1,23 @@
+{
+  "id": "conv-1782687423114-e326jf4v3",
+  "providerId": "claude",
+  "title": "构建 AI 从零到一学习体系",
+  "titleGenerationStatus": "success",
+  "createdAt": 1782687423114,
+  "updatedAt": 1782949242348,
+  "lastResponseAt": 1782949242348,
+  "sessionId": "b7dffaa7-b5a0-4ead-9f56-dc0fe3d7d646",
+  "providerState": {
+    "providerSessionId": "b7dffaa7-b5a0-4ead-9f56-dc0fe3d7d646"
+  },
+  "usage": {
+    "model": "haiku",
+    "inputTokens": 966,
+    "cacheCreationInputTokens": 0,
+    "cacheReadInputTokens": 106112,
+    "contextWindow": 200000,
+    "contextTokens": 107078,
+    "percentage": 54,
+    "contextWindowIsAuthoritative": true
+  }
+}

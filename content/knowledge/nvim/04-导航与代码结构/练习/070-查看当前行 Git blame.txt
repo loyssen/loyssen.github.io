@@ -1,0 +1,2 @@
+def hello():  # 光标在这里
+    pass  # v1

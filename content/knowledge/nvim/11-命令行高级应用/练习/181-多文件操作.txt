@@ -1,0 +1,2 @@
+:args *.js
+:argdo %s/var /let /ge | update
