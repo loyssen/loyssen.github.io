@@ -17,5 +17,4 @@ title: loysan 的笔记站
 
 ## 游戏开发分享
 
-- [Kf/LTPH 游戏开发文档体系](/gamedev/kf-ltph/)
 - [Unity3D 水下跑酷设计与实现](/gamedev/unity-水下跑酷设计与实现/)
