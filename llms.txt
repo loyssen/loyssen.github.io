@@ -1,0 +1,33 @@
+﻿# Firefly
+> Firefly 是一款基于 Astro 框架和 Fuwari 模板开发的清新美观且现代化个人博客主题模板，专为技术爱好者和内容创作者设计。该主题融合了现代 Web 技术栈，提供了丰富的功能模块和高度可定制的界面，让您能够轻松打造出专业且美观的个人博客网站。
+
+## Key Pages
+- [主页](https://firefly.cuteleaf.cn/)
+- [归档](https://firefly.cuteleaf.cn/archive/)
+- [关于我](https://firefly.cuteleaf.cn/about/)
+- [友链](https://firefly.cuteleaf.cn/friends/): 这里是我的朋友们，欢迎互相访问交流
+- [留言](https://firefly.cuteleaf.cn/guestbook/): 欢迎在这里留下你的足迹，分享你的想法和建议
+- [项目](https://firefly.cuteleaf.cn/projects/): 这里展示我开发过的项目
+- [打赏](https://firefly.cuteleaf.cn/sponsor/): 如果我的内容对你有帮助，欢迎通过以下方式打赏我，你的支持是我持续创作的动力！
+
+## Recent Posts
+- [基于Unity3D的水下跑酷游戏的设计与实现](https://firefly.cuteleaf.cn/posts/gamedev-unity-%E6%B0%B4%E4%B8%8B%E8%B7%91%E9%85%B7%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0-%E5%9F%BA%E4%BA%8Eunity3d%E7%9A%84%E6%B0%B4%E4%B8%8B%E8%B7%91%E9%85%B7%E6%B8%B8%E6%88%8F%E7%9A%84%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0/)
+- [03-模糊查找与目录跳转](https://firefly.cuteleaf.cn/posts/knowledge-nixos-05-%E6%93%8D%E4%BD%9C%E8%BF%9B%E5%8C%96%E5%8E%86%E7%A8%8B-04-%E6%96%87%E4%BB%B6%E4%B8%8E%E6%90%9C%E7%B4%A2-03-%E6%A8%A1%E7%B3%8A%E6%9F%A5%E6%89%BE%E4%B8%8E%E7%9B%AE%E5%BD%95%E8%B7%B3%E8%BD%AC/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-00-%E8%A1%A5%E5%85%85%E7%BB%83%E4%B9%A0-%E6%95%99%E5%AD%A6/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-01-%E5%9F%BA%E7%A1%80%E6%96%87%E6%9C%AC%E7%BC%96%E8%BE%91-%E6%95%99%E5%AD%A6/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-02-%E7%BC%96%E8%BE%91%E6%93%8D%E4%BD%9C%E6%8A%80%E5%B7%A7-%E6%95%99%E5%AD%A6/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-03-%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%A0%BC%E5%BC%8F%E5%8C%96-%E6%95%99%E5%AD%A6/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-04-%E5%AF%BC%E8%88%AA%E4%B8%8E%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84-%E6%95%99%E5%AD%A6/)
+- [解答](https://firefly.cuteleaf.cn/posts/knowledge-nvim-04-%E5%AF%BC%E8%88%AA%E4%B8%8E%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84-%E8%A7%A3%E7%AD%94/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-05-%E9%AB%98%E7%BA%A7%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86-%E6%95%99%E5%AD%A6/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-07-%E5%B7%A5%E4%BD%9C%E6%B5%81%E4%B8%8E%E7%8E%AF%E5%A2%83%E7%AE%A1%E7%90%86-%E6%95%99%E5%AD%A6/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-08-%E4%BB%A3%E7%A0%81%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7-%E6%95%99%E5%AD%A6/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-09-%E6%96%87%E6%9C%AC%E5%A4%84%E7%90%86%E8%BF%9B%E9%98%B6-%E6%95%99%E5%AD%A6/)
+- [教学](https://firefly.cuteleaf.cn/posts/knowledge-nvim-11-%E5%91%BD%E4%BB%A4%E8%A1%8C%E9%AB%98%E7%BA%A7%E5%BA%94%E7%94%A8-%E6%95%99%E5%AD%A6/)
+- [README](https://firefly.cuteleaf.cn/posts/readme/)
+- [00-索引](https://firefly.cuteleaf.cn/posts/knowledge-nixos-00-%E7%B4%A2%E5%BC%95/)
+- [01-从Windows到Linux的思维转换](https://firefly.cuteleaf.cn/posts/knowledge-nixos-01-linux%E5%9F%BA%E7%A1%80-01-%E4%BB%8Ewindows%E5%88%B0linux%E7%9A%84%E6%80%9D%E7%BB%B4%E8%BD%AC%E6%8D%A2/)
+- [02-Linux发展简史与发行版生态](https://firefly.cuteleaf.cn/posts/knowledge-nixos-01-linux%E5%9F%BA%E7%A1%80-02-linux%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2%E4%B8%8E%E5%8F%91%E8%A1%8C%E7%89%88%E7%94%9F%E6%80%81/)
+- [03-文件系统与目录结构](https://firefly.cuteleaf.cn/posts/knowledge-nixos-01-linux%E5%9F%BA%E7%A1%80-03-%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/)
+- [04-Shell与终端基本功](https://firefly.cuteleaf.cn/posts/knowledge-nixos-01-linux%E5%9F%BA%E7%A1%80-04-shell%E4%B8%8E%E7%BB%88%E7%AB%AF%E5%9F%BA%E6%9C%AC%E5%8A%9F/)
+- [05-用户与权限](https://firefly.cuteleaf.cn/posts/knowledge-nixos-01-linux%E5%9F%BA%E7%A1%80-05-%E7%94%A8%E6%88%B7%E4%B8%8E%E6%9D%83%E9%99%90/)
